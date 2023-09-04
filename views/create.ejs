@@ -1,0 +1,20 @@
+<html lang="en">
+    <%- include('./partials/head') %>
+
+    <body>
+        <%- include('./partials/nav') %>
+
+        <div class="create-blog content">
+            <form>
+                <label for="title">Blog Title</label>
+                <input type="text" id="title" required />
+                <label for="preview">Blog Preview</label>
+                <input type="text" id="preview" required />
+                <label for="body">Blog Text</label>
+                <textarea id="body" required>type your blog here</textarea>
+                <button>Submit</button>
+            </form>
+        </div>
+    </body>
+    <%- include('./partials/foot') %>
+</html>
