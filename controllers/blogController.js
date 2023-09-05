@@ -10,7 +10,7 @@ const blog_index = (req, res) => {
 };
 
 const blog_about_get = (req, res) => {
-    res.render("blogs/about", { title: "About" });
+    res.status(404).render("blogs/about", { title: "About" });
 };
 
 const blog_details = (req, res) => {
@@ -22,7 +22,10 @@ const blog_details = (req, res) => {
                 title: "Blog Details",
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+            console.log(err);
+            res.render("404", { title: "Blog Not Found" });
+        });
 };
 
 const blog_create_get = (req, res) => {
