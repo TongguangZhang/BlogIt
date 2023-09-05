@@ -1,5 +1,5 @@
 const express = require("express");
-const ejs = require("ejs");
+const morgan = require("morgan");
 
 // create app
 const app = express();
@@ -8,6 +8,10 @@ app.set("view engine", "ejs");
 
 // listen for requests
 app.listen(3000);
+
+// middleware and static files
+app.use(morgan("tiny")); // logs requests
+app.use(express.static("public"));
 
 // get requests
 app.get("/", (req, res) => {
