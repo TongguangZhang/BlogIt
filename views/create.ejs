@@ -5,13 +5,13 @@
         <%- include('./partials/nav') %>
 
         <div class="create-blog content">
-            <form>
+            <form action="/blogs" method="POST">
                 <label for="title">Blog Title</label>
-                <input type="text" id="title" required />
-                <label for="preview">Blog Preview</label>
-                <input type="text" id="preview" required />
+                <input type="text" id="title" name="title" required />
+                <label for="snippet">Blog Snippet</label>
+                <input type="text" id="snippet" name="snippet" required />
                 <label for="body">Blog Text</label>
-                <textarea id="body" required>type your blog here</textarea>
+                <textarea id="body" name="body" required></textarea>
                 <button>Submit</button>
             </form>
         </div>
