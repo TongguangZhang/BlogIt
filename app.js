@@ -1,30 +1,46 @@
 const express = require("express");
 const morgan = require("morgan");
+const fs = require("fs");
+const mongoose = require("mongoose");
+const Blog = require("./models/blog");
 
 // create app
 const app = express();
 
-app.set("view engine", "ejs");
+const configData = fs.readFileSync("config.json");
+const config = JSON.parse(configData);
+const dbURI = `mongodb+srv://${config.username}:${config.password}@learn-mongo.ukmrbkv.mongodb.net/blogspot?retryWrites=true&w=majority`;
+mongoose
+    .connect(dbURI)
+    .then((result) => {
+        console.log("Connected to Database");
+        app.listen(3000);
+        console.log(`Listening on port 3000`);
+    })
+    .catch((err) => console.log(err));
 
-// listen for requests
-app.listen(3000);
+app.set("view engine", "ejs");
 
 // middleware and static files
 app.use(morgan("tiny")); // logs requests
 app.use(express.static("public"));
 
-// get requests
+// routes
 app.get("/", (req, res) => {
-    const blogs = [
-        { title: "blog1", snippet: "Lorem ipsum dolor sit amet" },
-        { title: "blog2", snippet: "Lorem ipsum dolor sit amet" },
-        { title: "blog3", snippet: "Lorem ipsum dolor sit amet" },
-    ];
-    res.render("index", { title: "Home", blogs: blogs });
+    res.redirect("/blogs");
 });
 
 app.get("/about", (req, res) => {
     res.render("about", { title: "About" });
+});
+
+app.get("/blogs", (req, res) => {
+    Blog.find()
+        .sort({ createdAt: -1 })
+        .then((result) => {
+            res.render("index", { title: "All Blogs", blogs: result });
+        })
+        .catch((err) => console.log(err));
 });
 
 // new blog
