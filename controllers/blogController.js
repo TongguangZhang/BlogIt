@@ -9,10 +9,6 @@ const blog_index = (req, res) => {
         .catch((err) => console.log(err));
 };
 
-const blog_about_get = (req, res) => {
-    res.status(404).render("blogs/about", { title: "About" });
-};
-
 const blog_details = (req, res) => {
     const id = req.params.id;
     Blog.findById(id)
@@ -54,7 +50,6 @@ const blog_delete = (req, res) => {
 
 module.exports = {
     blog_index,
-    blog_about_get,
     blog_details,
     blog_create_get,
     blog_post,

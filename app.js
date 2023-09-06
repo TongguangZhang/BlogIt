@@ -28,7 +28,15 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 // routes
-app.use(blogRoutes);
+app.get("/", (req, res) => {
+    res.redirect("/blogs");
+});
+
+app.get("/about", (req, res) => {
+    res.render("about", { title: "About" });
+});
+
+app.use("/blogs", blogRoutes);
 
 // 404 (default) must be at bottom - triggers for every request
 app.use((req, res) => {
