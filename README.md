@@ -2,7 +2,7 @@
 
 Blogging website to learn Node.js, Express and MongoDB
 
-The Node server uses Mongoose to model users and workouts for communicating with the MongoDB Atlas database. The frontend is basic HTML and CSS
+The Node server uses Mongoose to model blogs for communicating with the MongoDB Atlas database. The frontend is basic HTML and CSS
 
 The homepage displays the user's blogs sorted from newest to oldest
 
