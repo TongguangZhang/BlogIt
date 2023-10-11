@@ -10,7 +10,7 @@ const app = express();
 // connect to mongodb
 const configData = fs.readFileSync("config.json");
 const config = JSON.parse(configData);
-const dbURI = `mongodb+srv://${config.username}:${config.password}@learn-mongo.ukmrbkv.mongodb.net/blogspot?retryWrites=true&w=majority`;
+const dbURI = `mongodb+srv://${config.username}:${config.password}@learn-mongo.ukmrbkv.mongodb.net/myblogs?retryWrites=true&w=majority`;
 mongoose
     .connect(dbURI)
     .then((result) => {

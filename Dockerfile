@@ -1,8 +1,8 @@
 FROM node
 
-RUN mkdir app
+RUN mkdir /usr/src/app
 
-WORKDIR app
+WORKDIR /usr/src/app
 
 COPY . .
 
